@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>토익 리딩 연습</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f4ef; --card:#ffffff; --ink:#1d1f24; --muted:#6b6f78; --line:#e3e0d8;
+  --accent:#1f4e79; --accent-soft:#e7eef6; --ok:#1f7a4d; --ok-soft:#e5f3eb;
+  --bad:#b3261e; --bad-soft:#fbe9e7; --warn:#a15c00;
+}
+@media (prefers-color-scheme: dark){
+  :root{--bg:#15171b;--card:#1e2126;--ink:#eceae4;--muted:#9aa0a9;--line:#2f333a;
+  --accent:#8db8e3;--accent-soft:#22303f;--ok:#6cc79a;--ok-soft:#1d3329;--bad:#f08a80;--bad-soft:#3a2321;--warn:#e0a24a;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR",system-ui,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin:0 auto;padding:20px 16px 96px}
+h1{font-size:1.5rem;margin:8px 0 4px;letter-spacing:-.02em}
+.sub{color:var(--muted);margin:0 0 20px;font-size:.95rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:12px}
+.setbtn{display:flex;justify-content:space-between;align-items:center;width:100%;text-align:left;cursor:pointer;font:inherit;color:inherit}
+.setbtn:hover{border-color:var(--accent)}
+.tag{display:inline-block;font-size:.75rem;font-weight:700;color:var(--accent);background:var(--accent-soft);padding:2px 8px;border-radius:999px;margin-bottom:4px}
+.meta{color:var(--muted);font-size:.85rem}
+.best{font-size:.85rem;color:var(--ok);font-weight:500;white-space:nowrap;margin-left:12px}
+.primary{display:block;width:100%;padding:14px;border:0;border-radius:12px;background:var(--accent);color:var(--card);font:inherit;font-weight:700;font-size:1rem;cursor:pointer;margin:16px 0 8px}
+.ghost{background:transparent;border:1px solid var(--line);color:var(--ink);font:inherit;padding:10px 14px;border-radius:10px;cursor:pointer}
+.bar{position:sticky;top:0;z-index:5;background:var(--bg);display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 0;border-bottom:1px solid var(--line);margin-bottom:14px}
+.timer{font-variant-numeric:tabular-nums;font-weight:700;font-size:1.05rem}
+.timer.over{color:var(--bad)}
+.timer small{font-weight:400;color:var(--muted);font-size:.8rem}
+.passage{font-family:"Source Serif 4",Georgia,serif;font-size:1.02rem;line-height:1.65;white-space:normal}
+.passage p{margin:0 0 .8em}
+.passage .hd{font-family:"Noto Sans KR",sans-serif;font-size:.85rem;color:var(--muted);margin-bottom:.6em}
+.passage .ttl{font-weight:600}
+.blank{display:inline-block;min-width:3.2em;border-bottom:2px solid var(--accent);text-align:center;font-family:"Noto Sans KR",sans-serif;font-size:.8rem;color:var(--accent);font-weight:700}
+.mark{font-family:"Noto Sans KR",sans-serif;font-size:.8rem;color:var(--accent);font-weight:700}
+.doclabel{font-family:"Noto Sans KR",sans-serif;font-size:.78rem;font-weight:700;color:var(--muted);letter-spacing:.04em;margin:0 0 8px}
+.q{margin:18px 0 6px;font-weight:500}
+.q .num{color:var(--accent);font-weight:700;margin-right:6px}
+.q em{font-family:"Source Serif 4",Georgia,serif}
+.opt{display:flex;gap:10px;align-items:flex-start;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin:6px 0;font:inherit;color:inherit;cursor:pointer}
+.opt b{min-width:1.6em;color:var(--muted)}
+.opt.sel{border-color:var(--accent);background:var(--accent-soft)}
+.opt.sel b{color:var(--accent)}
+.opt.right{border-color:var(--ok);background:var(--ok-soft)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.opt:disabled{cursor:default}
+.ex{font-size:.9rem;background:var(--bg);border-left:3px solid var(--accent);padding:8px 12px;border-radius:0 8px 8px 0;margin:8px 0 4px}
+.ex.ok{border-color:var(--ok)} .ex.no{border-color:var(--bad)}
+.verdict{font-weight:700;margin-right:6px}
+.ex.ok .verdict{color:var(--ok)} .ex.no .verdict{color:var(--bad)}
+.result{text-align:center;padding:24px 16px}
+.big{font-size:2.6rem;font-weight:700;letter-spacing:-.03em;margin:4px 0}
+.row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--line);font-size:.95rem}
+.row:last-child{border-bottom:0}
+.note{font-size:.82rem;color:var(--muted);margin-top:12px}
+.hidden{display:none}
+#ft{position:fixed;right:12px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:20;font-family:"Noto Sans KR",sans-serif}
+#ftPill{display:flex;align-items:center;gap:8px;background:var(--ink);color:var(--bg);border:0;border-radius:999px;padding:10px 16px;font:inherit;font-weight:700;font-variant-numeric:tabular-nums;font-size:1.05rem;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.25)}
+#ftPill .dot{width:8px;height:8px;border-radius:50%;background:var(--muted)}
+#ftPill.run .dot{background:#4cc38a}
+#ftPill.low{background:var(--bad);color:#fff}
+#ftPanel{position:absolute;right:0;bottom:56px;width:270px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;box-shadow:0 10px 30px rgba(0,0,0,.2)}
+#ftPanel .big{font-size:2.2rem;text-align:center;font-variant-numeric:tabular-nums}
+.ftbtns{display:flex;gap:6px;margin:10px 0}
+.ftbtns button{flex:1;padding:9px 0;border-radius:9px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:inherit;font-weight:500;cursor:pointer}
+.ftbtns button.go{background:var(--accent);color:var(--card);border-color:var(--accent)}
+.pace{font-size:.82rem;margin:0;padding:0;list-style:none}
+.pace li{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--line)}
+.pace li:last-child{border-bottom:0}
+.pace li.now{color:var(--accent);font-weight:700}
+.pace li.past{color:var(--muted);text-decoration:line-through}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+
+<div id="ft">
+  <div id="ftPanel" class="hidden">
+    <div class="meta" style="text-align:center" id="ftTitle">전체 타이머</div>
+    <div class="big" id="ftBig"></div>
+    <div class="ftbtns">
+      <button class="go" id="ftGo" onclick="ftToggle()">시작</button>
+      <button onclick="ftReset()">초기화</button>
+    </div>
+    <div class="meta" style="margin-bottom:4px">이 시각까지 끝내기 (남은 시간 기준)</div>
+    <ul class="pace" id="ftPace"></ul>
+  </div>
+  <button id="ftPill" onclick="ftPanel()"><span class="dot"></span><span id="ftSmall"></span></button>
+</div>
+
+<script>
+const SETS = [
+{
+  id:"p5", part:"Part 5", name:"문장 빈칸 채우기", target:200,
+  desc:"10문항 · 목표 3분 20초 (문항당 20초)",
+  qs:[
+    {n:101,q:"The new software will allow employees to complete their reports more ------- than before.",o:["efficient","efficiently","efficiency","efficiencies"],a:1,ex:"동사 complete를 꾸미는 자리이고 more와 함께 비교급을 만들므로 부사 efficiently가 맞아요."},
+    {n:102,q:"All visitors must sign in at the front desk ------- entering the laboratory.",o:["before","during","since","until"],a:0,ex:"'실험실에 들어가기 전에 서명한다'는 흐름이에요. during 뒤에는 동명사가 오지 않고 명사가 와요."},
+    {n:103,q:"Ms. Alvarez has been asked to ------- the quarterly sales figures before they are sent to headquarters.",o:["review","remain","respond","result"],a:0,ex:"빈칸 뒤에 목적어(the figures)가 있으므로 타동사가 필요해요. remain, respond, result는 목적어를 바로 받지 못하는 자동사예요."},
+    {n:104,q:"Neither the manager ------- her assistant was available to answer the client's questions.",o:["or","nor","and","but"],a:1,ex:"neither A nor B는 짝으로 외워 두는 상관접속사예요."},
+    {n:105,q:"The conference room on the third floor is ------- larger than the one on the second floor.",o:["very","much","many","more"],a:1,ex:"비교급(larger)을 강조할 때는 much, far, even, still을 써요. very는 비교급을 꾸미지 못해요."},
+    {n:106,q:"Applications ------- after the deadline will not be considered.",o:["receive","receiving","received","are received"],a:2,ex:"본동사는 will not be considered예요. 빈칸은 Applications를 뒤에서 꾸미는 자리이고, 지원서는 '받아지는' 것이므로 과거분사 received가 맞아요."},
+    {n:107,q:"Mr. Chen, ------- team won the design award, will speak at the banquet.",o:["who","whom","whose","which"],a:2,ex:"빈칸 뒤에 관사 없는 명사 team이 바로 와요. '그의 팀'이라는 소유 관계이므로 whose가 맞아요."},
+    {n:108,q:"The company's profits rose sharply last year ------- the decline in overseas sales.",o:["although","despite","however","because"],a:1,ex:"빈칸 뒤가 절이 아닌 명사구(the decline ...)라 전치사가 필요해요. although와 because는 접속사, however는 부사예요."},
+    {n:109,q:"By the time the renovation is complete, the staff ------- to the new building.",o:["moves","will have moved","has moved","moving"],a:1,ex:"By the time + 현재시제는 미래의 한 시점을 뜻하고, 그때까지 완료될 일은 미래완료(will have p.p.)로 써요."},
+    {n:110,q:"Please refer to the attached document for a ------- list of participating vendors.",o:["complete","completely","completion","completes"],a:0,ex:"관사 a와 명사 list 사이는 형용사 자리예요."}
+  ]
+},
+{
+  id:"p6", part:"Part 6", name:"장문 빈칸 채우기 · 이메일", target:120,
+  desc:"4문항 · 목표 2분",
+  passage:`<p class="hd">Questions 131–134 refer to the following e-mail.</p>
+<p><span class="ttl">To:</span> All Staff<br><span class="ttl">Subject:</span> North Parking Lot</p>
+<p>Starting next Monday, the north parking lot will be closed for repaving. The work is <span class="blank">131</span> to take about two weeks. During this period, employees may park in the visitor lot on Elm Street. <span class="blank">132</span> Shuttle buses will run between the visitor lot and the main entrance every fifteen minutes <span class="blank">133</span> 7:00 A.M. and 7:00 P.M.</p>
+<p>We appreciate your <span class="blank">134</span> while these improvements are made.</p>
+<p>Facilities Department</p>`,
+  qs:[
+    {n:131,q:"",o:["expect","expected","expecting","expectation"],a:1,ex:"be expected to do는 '~할 것으로 예상된다'는 수동태 표현이에요."},
+    {n:132,q:"",o:["Please note that spaces there are limited, so we encourage carpooling.","The repaving company was founded twenty years ago.","The cafeteria menu will also change next month.","Thank you for attending last week's safety training."],a:0,ex:"바로 앞 문장이 방문객 주차장 이용 안내예요. 그 주차장 공간이 부족하니 카풀을 권한다는 (A)가 자연스럽게 이어져요. 문장 삽입 문제는 앞뒤 문장과 주제가 이어지는지부터 확인하세요."},
+    {n:133,q:"",o:["among","between","from","within"],a:1,ex:"between A and B는 'A와 B 사이에'라는 뜻이에요. from이었다면 from A to B가 되어야 해요."},
+    {n:134,q:"",o:["patience","patient","patiently","patients"],a:0,ex:"소유격 your 뒤는 명사 자리예요. patients(환자들)는 의미가 맞지 않아요."}
+  ]
+},
+{
+  id:"p7a", part:"Part 7", name:"단일 지문 · 기사", target:300,
+  desc:"5문항 · 목표 5분",
+  passage:`<p class="hd">Questions 147–151 refer to the following article.</p>
+<p>PORTSMOUTH (June 4) — Kestrel Outdoor Gear announced on Tuesday that it will open its first retail store outside the United Kingdom this autumn. The store, to be located in Dublin's Grafton Street shopping district, will carry the company's full line of hiking and camping equipment as well as a selection of items available only at that location. <span class="mark">—[1]—</span></p>
+<p>Kestrel, which began as a small online business in 2014, has until now relied on third-party retailers to sell its products abroad. "Customers in Ireland have been asking for a place where they can try our products before buying," said CEO Fiona Marsh. "A dedicated store lets us offer that experience while also building closer relationships with the local hiking community." <span class="mark">—[2]—</span></p>
+<p>The Dublin location will host free monthly workshops on topics such as trail navigation and equipment repair. <span class="mark">—[3]—</span> Ms. Marsh added that if the store performs well during its first year, the company may consider opening additional locations in continental Europe. <span class="mark">—[4]—</span></p>`,
+  qs:[
+    {n:147,q:"What is the article mainly about?",o:["A company's plan to expand internationally","A merger between two outdoor retailers","A new line of camping products","The appointment of a new CEO"],a:0,ex:"영국 밖에 첫 매장을 연다는 내용이에요. 지문의 outside the United Kingdom을 선택지에서 internationally로 바꿔 썼어요."},
+    {n:148,q:"What is indicated about Kestrel Outdoor Gear?",o:["It currently operates several stores in Ireland.","It originally sold its products online.","It manufactures its equipment in Dublin.","It plans to stop working with third-party retailers."],a:1,ex:"began as a small online business를 바꿔 말한 선택지예요. 더블린 매장이 첫 해외 매장이라 (A)는 틀리고, 외부 판매업체와 거래를 끊는다는 말은 없어서 (D)도 틀려요."},
+    {n:149,q:"According to Ms. Marsh, why is the company opening the store?",o:["To reduce shipping costs","To let customers try products in person","To compete with a rival company","To sell discontinued products"],a:1,ex:"try our products before buying이 근거예요."},
+    {n:150,q:"The word \"carry\" in paragraph 1, line 3, is closest in meaning to",o:["transport","stock","support","hold"],a:1,ex:"매장이 상품을 '갖추고 판매한다'는 뜻이라 stock이 맞아요. carry의 기본 뜻인 '운반하다'(transport)를 고르게 하는 함정이에요."},
+    {n:151,q:"In which of the positions marked [1], [2], [3], and [4] does the following sentence best belong?<br><em>\"Registration will be available through the company's Web site beginning in September.\"</em>",o:["[1]","[2]","[3]","[4]"],a:2,ex:"Registration은 바로 앞에 나온 무료 워크숍 등록을 가리켜요. 그래서 워크숍 문장 뒤인 [3]에 들어가요."}
+  ]
+},
+{
+  id:"p7b", part:"Part 7", name:"이중 지문 · 웹페이지 + 이메일", target:330,
+  desc:"5문항 · 목표 5분 30초 · 고난도",
+  passage:`<p class="hd">Questions 176–180 refer to the following Web page and e-mail.</p>
+<p class="doclabel">WEB PAGE</p>
+<p><span class="ttl">Halvorsen Logistics Summit (April 8–10): Registration</span></p>
+<p>Early registration, available until March 3, costs $420 and includes access to all sessions and the closing banquet. Standard registration costs $510. Attendees who register for workshops only ($260) may attend the banquet for an additional $75. <span class="mark">—[1]—</span> Groups of five or more from the same organization receive a 15 percent discount on standard rates, though this cannot be combined with early registration pricing. <span class="mark">—[2]—</span> Cancellations made at least 21 days before the summit are eligible for a full refund, minus a $40 processing fee. <span class="mark">—[3]—</span></p>
+<p class="doclabel" style="margin-top:1.4em">E-MAIL</p>
+<p><span class="ttl">From:</span> Marcus Oyelaran<br><span class="ttl">Date:</span> March 12</p>
+<p>I am writing on behalf of Brightwater Freight. Six members of our planning team intend to attend the summit, and I would like to confirm the total before submitting payment. One colleague, Ms. Tran, will attend only the workshops, but she would like to join us at the banquet. Could you also tell me whether we could get our money back if one of us is unable to come? Our travel plans may not be finalized until early April.</p>`,
+  qs:[
+    {n:176,q:"In which of the positions marked [1], [2], and [3] does the following sentence best belong?<br><em>\"This option is intended for those who cannot commit to the full program.\"</em>",o:["[1]","[2]","[3]"],a:0,ex:"This option은 바로 앞의 workshops only 등록을 가리켜요. 그래서 그 문장 뒤인 [1]에 들어가요."},
+    {n:177,q:"What is suggested about Brightwater Freight?",o:["It qualifies for the early registration price.","It is eligible for a group discount.","It has already paid the registration fee.","It must register all members for workshops only."],a:1,ex:"참가자가 6명이라 5명 이상 그룹 할인 대상이에요. 이메일을 보낸 3월 12일은 조기 등록 마감(3월 3일) 뒤라서 (A)는 틀려요. 두 지문을 함께 봐야 풀리는 연계 문제예요."},
+    {n:178,q:"If a Brightwater employee cancels after the travel plans are finalized, what will most likely happen?",o:["The employee will receive a full refund.","The employee will receive a refund minus $40.","The employee will not be eligible for a refund.","The registration will be transferred to a colleague."],a:2,ex:"행사가 4월 8일에 시작하니 21일 전은 3월 18일이에요. 일정이 4월 초에 확정된 뒤 취소하면 환불 기한이 이미 지나 있어요."},
+    {n:179,q:"In the e-mail, the word \"finalized\" is closest in meaning to",o:["decided","ended","improved","published"],a:0,ex:"finalize plans는 계획을 '확정하다'는 뜻이에요. '끝내다'라는 사전 뜻만 떠올리면 (B)를 고르기 쉬워요."},
+    {n:180,q:"What is NOT indicated about the summit?",o:["It lasts three days.","It includes a closing banquet.","It offers workshops.","It is held in a different city each year."],a:3,ex:"4월 8–10일이라 3일 동안 열리고(A), banquet(B)과 workshops(C)도 지문에 나와요. 매년 다른 도시에서 열린다는 말은 없어요."}
+  ]
+},
+{
+  id:"r2p5", round:2, part:"Part 5", name:"문장 빈칸 채우기", target:200,
+  desc:"10문항 · 목표 3분 20초 (문항당 20초)",
+  qs:[
+    {n:101,q:"The marketing team will ------- the results of the customer survey at Friday's meeting.",o:["present","presence","presently","presentable"],a:0,ex:"조동사 will 뒤에는 동사원형이 와요. 빈칸 뒤에 목적어(the results)도 있으니 타동사 present가 맞아요."},
+    {n:102,q:"Ms. Kim was promoted to regional manager ------- her excellent sales record.",o:["because","due to","although","so that"],a:1,ex:"빈칸 뒤가 명사구(her excellent sales record)라 전치사가 필요해요. because, although, so that은 뒤에 절이 와야 하는 접속사예요."},
+    {n:103,q:"Employees are reminded to turn off ------- computers before leaving the office.",o:["they","them","their","theirs"],a:2,ex:"명사 computers 앞은 소유격 자리예요."},
+    {n:104,q:"The shipment was delayed, but the customer was ------- informed of the new delivery date.",o:["prompt","promptly","promptness","prompted"],a:1,ex:"be동사와 과거분사(informed) 사이에서 동사를 꾸미는 자리라 부사가 와요."},
+    {n:105,q:"------- the price of materials increases, the company will not raise its prices this year.",o:["Even if","Despite","In spite","Regarding"],a:0,ex:"빈칸 뒤가 주어+동사를 갖춘 절이라 접속사가 필요해요. Despite와 Regarding은 전치사이고, In spite는 of가 빠져 있어요."},
+    {n:106,q:"Of all the candidates interviewed, Mr. Ortiz was the ------- qualified for the position.",o:["much","more","most","very"],a:2,ex:"Of all ~(모든 ~ 중에서)와 the가 있으니 최상급 most가 맞아요."},
+    {n:107,q:"The hotel offers free shuttle service to guests ------- stay for three nights or more.",o:["who","whose","which","whom"],a:0,ex:"선행사가 사람(guests)이고 빈칸 뒤에 주어 없이 동사(stay)가 바로 오므로 주격 관계대명사 who가 맞아요."},
+    {n:108,q:"Please submit your travel expense report no later ------- Friday.",o:["by","than","until","to"],a:1,ex:"no later than은 '늦어도 ~까지'라는 뜻의 고정 표현이에요."},
+    {n:109,q:"The board of directors ------- the proposal for a new branch office last week.",o:["approves","approved","will approve","approving"],a:1,ex:"last week가 있으니 과거시제예요. 시간 표현부터 찾으면 빨리 풀려요."},
+    {n:110,q:"Customers can ------- their orders online until 24 hours before delivery.",o:["modify","agree","proceed","depend"],a:0,ex:"빈칸 뒤에 목적어(their orders)가 있어 타동사가 필요해요. agree, proceed, depend는 전치사가 있어야 목적어를 받는 자동사예요."}
+  ]
+},
+{
+  id:"r2p6", round:2, part:"Part 6", name:"장문 빈칸 채우기 · 사내 공지", target:120,
+  desc:"4문항 · 목표 2분",
+  passage:`<p class="hd">Questions 131–134 refer to the following memo.</p>
+<p><span class="ttl">To:</span> All Employees<br><span class="ttl">Subject:</span> New Expense System</p>
+<p>Starting March 1, all expense reports must be submitted through our new online system, ExpensePro. The system will make it easier to track <span class="blank">131</span> and receive reimbursements faster. <span class="blank">132</span></p>
+<p>A training session will be held on February 20 in Conference Room B. Employees who are unable to attend <span class="blank">133</span> watch a recorded version on the company intranet. All employees must complete the training <span class="blank">134</span> the end of February.</p>
+<p>If you have any questions, please contact the accounting department.</p>`,
+  qs:[
+    {n:131,q:"",o:["spend","spending","spent","spender"],a:1,ex:"track의 목적어 자리라 명사가 필요해요. spending은 '지출'이라는 명사로 쓰여요. spender는 '돈 쓰는 사람'이라 의미가 맞지 않아요."},
+    {n:132,q:"",o:["Paper forms will no longer be accepted after that date.","The accounting department moved to the fifth floor last year.","Conference Room B can hold up to fifty people.","Several employees will retire next month."],a:0,ex:"3월 1일부터 온라인으로만 제출한다는 내용 뒤에, 그날 이후 종이 양식은 받지 않는다는 (A)가 이어지는 게 자연스러워요. that date가 앞 문장의 March 1을 가리켜요."},
+    {n:133,q:"",o:["can","must not","were","having"],a:0,ex:"참석하지 못하는 사람은 녹화본을 '볼 수 있다'는 뜻이라 can이 맞아요. 빈칸 뒤에 동사원형 watch가 있으니 조동사 자리예요."},
+    {n:134,q:"",o:["by","until","since","during"],a:0,ex:"'2월 말까지 완료해야 한다'는 마감 기한이라 by를 써요. until은 '~까지 계속'이라는 뜻이라 complete 같은 한 번에 끝나는 동작과 어울리지 않아요."}
+  ]
+},
+{
+  id:"r2p7a", round:2, part:"Part 7", name:"단일 지문 · 공지", target:300,
+  desc:"5문항 · 목표 5분",
+  passage:`<p class="hd">Questions 147–151 refer to the following notice.</p>
+<p><span class="ttl">Greenfield Public Library: Notice to Patrons</span></p>
+<p>Beginning on May 1, the Greenfield Public Library will extend its weekday hours. The library will now remain open until 9:00 P.M. Monday through Thursday, two hours later than before. Weekend hours will not change. <span class="mark">—[1]—</span></p>
+<p>This change is the result of a survey conducted last winter, in which many patrons said they were unable to visit the library after work. <span class="mark">—[2]—</span> To support the longer hours, the library has hired three additional staff members.</p>
+<p>In addition, the second-floor study rooms, which previously had to be reserved in person, can now be booked online up to one week in advance. <span class="mark">—[3]—</span> Patrons with questions may contact the front desk at 555-0148. <span class="mark">—[4]—</span></p>`,
+  qs:[
+    {n:147,q:"Why is the library changing its hours?",o:["To reduce operating costs","To respond to patron feedback","To prepare for a renovation","To host evening events"],a:1,ex:"퇴근 후에 올 수 없다는 이용자 설문 결과 때문에 바꾼다고 했어요. 지문의 survey를 선택지에서 patron feedback으로 바꿔 썼어요."},
+    {n:148,q:"What is indicated about the library?",o:["It will close earlier on weekends.","It has recently hired new employees.","It is moving to a new building.","It charges a fee for study rooms."],a:1,ex:"has hired three additional staff members를 바꿔 말한 선택지예요. 주말 시간은 바뀌지 않는다고 했으니 (A)는 틀려요."},
+    {n:149,q:"What is suggested about the study rooms?",o:["They are located on the first floor.","They could not be reserved online before.","They are available only on weekends.","They can be booked one month in advance."],a:1,ex:"previously had to be reserved in person에서 전에는 직접 가서 예약해야 했다는 걸 알 수 있어요. 그러니 전에는 온라인 예약이 안 됐다고 추론할 수 있어요. 공부방은 2층이고(A), 예약은 1주일 전부터예요(D)."},
+    {n:150,q:"The word \"extend\" in paragraph 1, line 1, is closest in meaning to",o:["lengthen","deliver","invite","reach"],a:0,ex:"운영 시간을 두 시간 '늘린다'는 뜻이라 lengthen이 맞아요."},
+    {n:151,q:"In which of the positions marked [1], [2], [3], and [4] does the following sentence best belong?<br><em>\"Reservations can be made through the library's Web site.\"</em>",o:["[1]","[2]","[3]","[4]"],a:2,ex:"온라인으로 예약할 수 있다는 문장 바로 뒤에 '웹사이트에서 예약하면 된다'는 설명이 이어지는 게 자연스러워요."}
+  ]
+},
+{
+  id:"r2p7b", round:2, part:"Part 7", name:"이중 지문 · 광고 + 이메일", target:330,
+  desc:"5문항 · 목표 5분 30초 · 고난도",
+  passage:`<p class="hd">Questions 176–180 refer to the following advertisement and e-mail.</p>
+<p class="doclabel">ADVERTISEMENT</p>
+<p><span class="ttl">Seaview Catering: Corporate Event Packages</span></p>
+<p><span class="ttl">Basic</span> ($28 per person): buffet lunch, coffee and tea<br>
+<span class="ttl">Standard</span> ($36 per person): buffet lunch, coffee and tea, dessert table<br>
+<span class="ttl">Premium</span> ($45 per person): plated lunch, coffee and tea, dessert table, on-site serving staff</p>
+<p>All packages require a minimum of 30 guests. Orders must be confirmed at least 10 days before the event. Clients who book two or more events within the same calendar month receive free delivery for the second event.</p>
+<p class="doclabel" style="margin-top:1.4em">E-MAIL</p>
+<p><span class="ttl">From:</span> Priya Nandakumar, Holt Engineering<br><span class="ttl">To:</span> orders@seaviewcatering.com<br><span class="ttl">Date:</span> May 2</p>
+<p>Hello,</p>
+<p>I would like to arrange lunch for our staff training day on May 15. We expect 40 participants. Last year we chose the package with the plated lunch, and everyone was pleased with the service. This year, however, our budget is limited to $1,500, so we will need a less expensive option. We would still like to offer something sweet at the end of the meal.</p>
+<p>We are also holding our annual shareholders' meeting on May 28, and I will send the details for that event next week.</p>`,
+  qs:[
+    {n:176,q:"What is the purpose of the e-mail?",o:["To arrange food for an event","To complain about a past event","To request a refund","To change a delivery address"],a:0,ex:"I would like to arrange lunch가 목적이에요. 작년 서비스는 만족했다고 했으니 (B)는 틀려요."},
+    {n:177,q:"Which package did Holt Engineering choose last year?",o:["Basic","Standard","Premium","It is not mentioned."],a:2,ex:"이메일의 the package with the plated lunch와 광고에서 plated lunch가 들어간 패키지를 연결하면 Premium이에요. 패키지 이름이 이메일에 직접 나오지 않아서 두 지문을 오가야 하는 문제예요."},
+    {n:178,q:"Which package will Ms. Nandakumar most likely choose?",o:["Basic","Standard","Premium","A custom package"],a:1,ex:"40명 기준으로 Premium은 $1,800이라 예산 $1,500을 넘어요. Basic은 디저트가 없어서 something sweet 조건에 맞지 않아요. Standard는 $1,440이고 dessert table이 있어서 두 조건을 모두 만족해요."},
+    {n:179,q:"What is suggested about Holt Engineering?",o:["It may receive free delivery for one event.","It has fewer than 30 employees.","It is a new client of Seaview Catering.","It holds training once a year."],a:0,ex:"5월 15일과 5월 28일, 같은 달에 행사를 두 번 예약하면 두 번째 행사는 무료 배달이에요. 작년에도 이용했으니 (C)는 틀리고, 참가자가 40명이라 (B)도 틀려요."},
+    {n:180,q:"In the e-mail, the word \"limited\" in paragraph 1, line 3, is closest in meaning to",o:["restricted","shared","increased","delayed"],a:0,ex:"예산이 $1,500으로 '제한되어' 있다는 뜻이라 restricted가 맞아요."}
+  ]
+}
+];
+
+const L = ["A","B","C","D"];
+const app = document.getElementById("app");
+let S = null, tick = null;
+
+function load(){ try{ return JSON.parse(localStorage.getItem("toeic-best")||"{}"); }catch(e){ return {}; } }
+function save(b){ try{ localStorage.setItem("toeic-best", JSON.stringify(b)); }catch(e){} }
+function fmt(s){ const m=Math.floor(s/60), r=s%60; return m+":"+String(r).padStart(2,"0"); }
+function esc(t){ return t.replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
+
+function home(){
+  clearInterval(tick); S=null; window.scrollTo(0,0);
+  const best=load();
+  const rounds=[...new Set(SETS.map(s=>s.round||1))];
+  app.innerHTML = `
+    <h1>토익 리딩 연습</h1>
+    <p class="sub">실제 시험 형식을 본떠 만든 연습 문제예요. 세트를 고르거나 회차 전체를 이어서 풀어 보세요.</p>
+    ${rounds.map(r=>{
+      const idx=SETS.map((s,i)=>(s.round||1)===r?i:-1).filter(i=>i>=0);
+      const total=idx.reduce((n,i)=>n+SETS[i].qs.length,0);
+      return `<h2 style="font-size:1.15rem;margin:26px 0 10px">${r}회</h2>
+      ${idx.map(i=>{const s=SETS[i];return `
+        <button class="card setbtn" onclick="start([${i}])">
+          <div><span class="tag">${s.part}</span><div style="font-weight:700">${s.name}</div><div class="meta">${s.desc}</div></div>
+          ${best[s.id]!=null?`<span class="best">최고 ${best[s.id]}/${s.qs.length}</span>`:""}
+        </button>`;}).join("")}
+      <button class="primary" onclick="start([${idx.join(",")}])">${r}회 전체 이어서 풀기 · ${total}문항</button>`;
+    }).join("")}
+    <p class="note">문제는 모두 연습용으로 새로 만든 것이며 실제 기출문제가 아니에요. 목표 시간은 리딩 75분에 100문항을 푸는 속도를 기준으로 잡았어요.</p>`;
+}
+
+function start(queue){
+  S={queue, pos:0, results:[]};
+  openSet();
+}
+
+function openSet(){
+  const set=SETS[S.queue[S.pos]];
+  S.ans={}; S.graded=false; S.t0=Date.now(); S.elapsed=0;
+  render();
+  clearInterval(tick);
+  tick=setInterval(()=>{
+    if(S.graded) return;
+    S.elapsed=Math.floor((Date.now()-S.t0)/1000);
+    const el=document.getElementById("tm");
+    if(el){ el.innerHTML=fmt(S.elapsed)+` <small>/ ${fmt(set.target)}</small>`; el.classList.toggle("over",S.elapsed>set.target); }
+  },500);
+  window.scrollTo(0,0);
+}
+
+function pick(qi,oi){ if(S.graded) return; S.ans[qi]=oi; render(); }
+
+function grade(){
+  const set=SETS[S.queue[S.pos]];
+  S.graded=true;
+  S.elapsed=Math.floor((Date.now()-S.t0)/1000);
+  const right=set.qs.filter((q,i)=>S.ans[i]===q.a).length;
+  S.results.push({set,right,time:S.elapsed});
+  const best=load();
+  if(best[set.id]==null||right>best[set.id]){ best[set.id]=right; save(best); }
+  render();
+  const r=document.getElementById("score"); if(r) r.scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function next(){
+  if(S.pos<S.queue.length-1){ S.pos++; openSet(); } else summary();
+}
+
+function render(){
+  const set=SETS[S.queue[S.pos]];
+  const done=Object.keys(S.ans).length;
+  const right=set.qs.filter((q,i)=>S.ans[i]===q.a).length;
+  const multi=S.queue.length>1;
+  app.innerHTML = `
+    <div class="bar">
+      <button class="ghost" onclick="home()">← 목록</button>
+      <div class="meta">${multi?`세트 ${S.pos+1}/${S.queue.length} · `:""}${done}/${set.qs.length} 선택</div>
+      <div class="timer ${S.elapsed>set.target?"over":""}" id="tm">${fmt(S.elapsed)} <small>/ ${fmt(set.target)}</small></div>
+    </div>
+    <span class="tag">${set.part}</span>
+    <div style="font-weight:700;margin-bottom:10px">${set.name}</div>
+    ${S.graded?`<div class="card result" id="score">
+        <div class="meta">${set.part} 결과</div>
+        <div class="big">${right} / ${set.qs.length}</div>
+        <div class="meta">걸린 시간 ${fmt(S.elapsed)} · 목표 ${fmt(set.target)} ${S.elapsed<=set.target?"✓ 시간 안에 풀었어요":"· 목표보다 "+fmt(S.elapsed-set.target)+" 더 걸렸어요"}</div>
+      </div>`:""}
+    ${set.passage?`<div class="card passage">${set.passage}</div>`:""}
+    ${set.qs.map((q,i)=>`
+      <div class="q"><span class="num">${q.n}.</span>${q.q}</div>
+      ${q.o.map((o,j)=>{
+        let c="";
+        if(S.graded){ if(j===q.a) c="right"; else if(S.ans[i]===j) c="wrong"; }
+        else if(S.ans[i]===j) c="sel";
+        return `<button class="opt ${c}" ${S.graded?"disabled":""} onclick="pick(${i},${j})"><b>(${L[j]})</b><span>${esc(o)}</span></button>`;
+      }).join("")}
+      ${S.graded?`<div class="ex ${S.ans[i]===q.a?"ok":"no"}"><span class="verdict">${S.ans[i]===q.a?"정답":(S.ans[i]==null?"미응답":"오답")}</span>정답 (${L[q.a]}) · ${q.ex}</div>`:""}
+    `).join("")}
+    ${S.graded
+      ? `<button class="primary" onclick="${multi?"next()":"home()"}">${multi?(S.pos<S.queue.length-1?"다음 세트 →":"전체 결과 보기"):"목록으로"}</button>
+         ${!multi?`<button class="ghost" style="width:100%" onclick="openSet()">다시 풀기</button>`:""}`
+      : `<button class="primary" onclick="grade()">${done<set.qs.length?`채점하기 (${set.qs.length-done}문항 미선택)`:"채점하기"}</button>`}
+  `;
+}
+
+function summary(){
+  clearInterval(tick); window.scrollTo(0,0);
+  const right=S.results.reduce((n,r)=>n+r.right,0);
+  const total=S.results.reduce((n,r)=>n+r.set.qs.length,0);
+  const time=S.results.reduce((n,r)=>n+r.time,0);
+  const target=S.results.reduce((n,r)=>n+r.set.target,0);
+  app.innerHTML = `
+    <h1>전체 결과</h1>
+    <div class="card result">
+      <div class="big">${right} / ${total}</div>
+      <div class="meta">정답률 ${Math.round(right/total*100)}% · 총 ${fmt(time)} (목표 ${fmt(target)})</div>
+    </div>
+    <div class="card">
+      ${S.results.map(r=>`<div class="row"><span>${r.set.part} · ${r.set.name}</span><span><b>${r.right}/${r.set.qs.length}</b> <span class="meta">${fmt(r.time)}</span></span></div>`).join("")}
+    </div>
+    <p class="note">문항 수가 적어서 실제 토익 점수로 환산하기는 어려워요. 틀린 문제는 해설의 근거 문장을 지문에서 다시 찾아보세요.</p>
+    <button class="primary" onclick="home()">목록으로</button>`;
+}
+
+// ---- 전체 타이머: 사이트 전체 문항 기준 카운트다운 ----
+const PACE = [];
+let acc = 0;
+SETS.filter(s=>(s.round||1)===1).forEach(s=>{ acc += s.target; PACE.push({label:`${s.part} · ${s.qs[0].n}–${s.qs[s.qs.length-1].n}번`, at:acc}); });
+const FT_TOTAL = acc;
+const FT_COUNT = SETS.filter(s=>(s.round||1)===1).reduce((n,s)=>n+s.qs.length,0);
+let FT = {used:0, since:null};
+try{ const s=JSON.parse(localStorage.getItem("toeic-ft")||"null"); if(s) FT=s; }catch(e){}
+function ftSave(){ try{ localStorage.setItem("toeic-ft", JSON.stringify(FT)); }catch(e){} }
+function ftUsed(){ return Math.min(FT_TOTAL, FT.used + (FT.since? Math.floor((Date.now()-FT.since)/1000) : 0)); }
+function ftToggle(){
+  if(FT.since){ FT.used=ftUsed(); FT.since=null; }
+  else if(ftUsed()<FT_TOTAL){ FT.since=Date.now(); }
+  ftSave(); ftDraw();
+}
+function ftReset(){ FT={used:0,since:null}; ftSave(); ftDraw(); }
+function ftPanel(){ document.getElementById("ftPanel").classList.toggle("hidden"); }
+function ftDraw(){
+  const used=ftUsed(), left=FT_TOTAL-used;
+  if(left<=0 && FT.since){ FT.used=FT_TOTAL; FT.since=null; ftSave(); }
+  const t=fmt(left);
+  document.getElementById("ftSmall").textContent = left<=0 ? "시간 종료" : t;
+  document.getElementById("ftBig").textContent = t;
+  const pill=document.getElementById("ftPill");
+  pill.classList.toggle("run", !!FT.since);
+  pill.classList.toggle("low", left<=2*60);
+  document.getElementById("ftGo").textContent = FT.since ? "일시정지" : (used>0 && left>0 ? "계속" : "시작");
+  let now=PACE.findIndex(p=>used<p.at);
+  document.getElementById("ftPace").innerHTML = PACE.map((p,i)=>
+    `<li class="${i<now||now<0?"past":(i===now?"now":"")}"><span>${p.label}</span><span>${fmt(FT_TOTAL-p.at)} 남았을 때</span></li>`).join("");
+}
+document.getElementById("ftTitle").textContent = `회차당 ${FT_COUNT}문항 타이머 (${fmt(FT_TOTAL)})`;
+try{ const v=localStorage.getItem("toeic-ft-total"); if(v!==String(FT_TOTAL)){ FT={used:0,since:null}; localStorage.setItem("toeic-ft-total",String(FT_TOTAL)); ftSave(); } }catch(e){}
+setInterval(ftDraw, 500);
+ftDraw();
+
+home();
+</script>
+</body>
+</html>
