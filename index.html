@@ -185,7 +185,7 @@ const SETS = [
 <p>A training session will be held on February 20 in Conference Room B. Employees who are unable to attend <span class="blank">133</span> watch a recorded version on the company intranet. All employees must complete the training <span class="blank">134</span> the end of February.</p>
 <p>If you have any questions, please contact the accounting department.</p>`,
   qs:[
-    {n:131,q:"",o:["spend","spending","spent","spender"],a:1,ex:"track의 목적어 자리라 명사가 필요해요. spending은 '지출'이라는 명사로 쓰여요. spender는 '돈 쓰는 사람'이라 의미가 맞지 않아요."},
+    {n:131,q:"",o:["spends","spending","spent","spender"],a:1,ex:"track의 목적어 자리라 명사가 필요해요. spending은 '지출'이라는 명사로 쓰여요. spends는 동사, spent는 과거분사라 목적어 자리에 올 수 없고, spender는 '돈 쓰는 사람'이라 의미가 맞지 않아요."},
     {n:132,q:"",o:["Paper forms will no longer be accepted after that date.","The accounting department moved to the fifth floor last year.","Conference Room B can hold up to fifty people.","Several employees will retire next month."],a:0,ex:"3월 1일부터 온라인으로만 제출한다는 내용 뒤에, 그날 이후 종이 양식은 받지 않는다는 (A)가 이어지는 게 자연스러워요. that date가 앞 문장의 March 1을 가리켜요."},
     {n:133,q:"",o:["can","must not","were","having"],a:0,ex:"참석하지 못하는 사람은 녹화본을 '볼 수 있다'는 뜻이라 can이 맞아요. 빈칸 뒤에 동사원형 watch가 있으니 조동사 자리예요."},
     {n:134,q:"",o:["by","until","since","during"],a:0,ex:"'2월 말까지 완료해야 한다'는 마감 기한이라 by를 써요. until은 '~까지 계속'이라는 뜻이라 complete 같은 한 번에 끝나는 동작과 어울리지 않아요."}
@@ -201,7 +201,7 @@ const SETS = [
 <p>In addition, the second-floor study rooms, which previously had to be reserved in person, can now be booked online up to one week in advance. <span class="mark">—[3]—</span> Patrons with questions may contact the front desk at 555-0148. <span class="mark">—[4]—</span></p>`,
   qs:[
     {n:147,q:"Why is the library changing its hours?",o:["To reduce operating costs","To respond to patron feedback","To prepare for a renovation","To host evening events"],a:1,ex:"퇴근 후에 올 수 없다는 이용자 설문 결과 때문에 바꾼다고 했어요. 지문의 survey를 선택지에서 patron feedback으로 바꿔 썼어요."},
-    {n:148,q:"What is indicated about the library?",o:["It will close earlier on weekends.","It has recently hired new employees.","It is moving to a new building.","It charges a fee for study rooms."],a:1,ex:"has hired three additional staff members를 바꿔 말한 선택지예요. 주말 시간은 바뀌지 않는다고 했으니 (A)는 틀려요."},
+    {n:148,q:"What is indicated about the library?",o:["It will reduce its weekend hours.","It has recently hired new employees.","It is moving to a new building.","It charges a fee for study rooms."],a:1,ex:"has hired three additional staff members를 바꿔 말한 선택지예요. Weekend hours will not change라고 했으니 주말 운영 시간을 줄인다는 (A)는 틀려요."},
     {n:149,q:"What is suggested about the study rooms?",o:["They are located on the first floor.","They could not be reserved online before.","They are available only on weekends.","They can be booked one month in advance."],a:1,ex:"previously had to be reserved in person에서 전에는 직접 가서 예약해야 했다는 걸 알 수 있어요. 그러니 전에는 온라인 예약이 안 됐다고 추론할 수 있어요. 공부방은 2층이고(A), 예약은 1주일 전부터예요(D)."},
     {n:150,q:"The word \"extend\" in paragraph 1, line 1, is closest in meaning to",o:["lengthen","deliver","invite","reach"],a:0,ex:"운영 시간을 두 시간 '늘린다'는 뜻이라 lengthen이 맞아요."},
     {n:151,q:"In which of the positions marked [1], [2], [3], and [4] does the following sentence best belong?<br><em>\"Reservations can be made through the library's Web site.\"</em>",o:["[1]","[2]","[3]","[4]"],a:2,ex:"온라인으로 예약할 수 있다는 문장 바로 뒤에 '웹사이트에서 예약하면 된다'는 설명이 이어지는 게 자연스러워요."}
@@ -229,7 +229,82 @@ const SETS = [
     {n:179,q:"What is suggested about Holt Engineering?",o:["It may receive free delivery for one event.","It has fewer than 30 employees.","It is a new client of Seaview Catering.","It holds training once a year."],a:0,ex:"5월 15일과 5월 28일, 같은 달에 행사를 두 번 예약하면 두 번째 행사는 무료 배달이에요. 작년에도 이용했으니 (C)는 틀리고, 참가자가 40명이라 (B)도 틀려요."},
     {n:180,q:"In the e-mail, the word \"limited\" in paragraph 1, line 3, is closest in meaning to",o:["restricted","shared","increased","delayed"],a:0,ex:"예산이 $1,500으로 '제한되어' 있다는 뜻이라 restricted가 맞아요."}
   ]
+},
+{
+  id:"r3p5", round:3, part:"Part 5", name:"문장 빈칸 채우기 · 고난도", target:240,
+  desc:"10문항 · 목표 4분 · 어휘·어법 위주",
+  qs:[
+    {n:101,q:"The new regulations will take effect next month, ------- all restaurants to display calorie information on their menus.",o:["requiring","required","requires","to be required"],a:0,ex:"콤마 앞에 이미 완전한 문장이 있으니 빈칸은 분사구문 자리예요. 규정이 식당에 '요구하는' 능동 관계이고 뒤에 목적어(all restaurants)도 있으니 현재분사 requiring이 맞아요. requires를 쓰면 접속사 없이 동사가 두 개가 돼요."},
+    {n:102,q:"Ms. Hwang's proposal was approved ------- by the committee, with all twelve members voting in favor.",o:["unanimously","exclusively","relatively","previously"],a:0,ex:"열두 명 모두 찬성했다는 단서가 있으니 '만장일치로'라는 뜻의 unanimously가 맞아요. 이런 어휘 문제는 문장 뒤쪽의 단서 표현을 꼭 확인하세요."},
+    {n:103,q:"------- had the manager arrived than the meeting began.",o:["No sooner","Hardly","Scarcely","Rarely"],a:0,ex:"뒤에 than이 있으니 No sooner ~ than(~하자마자 …했다)이에요. Hardly와 Scarcely는 when이나 before와 짝을 이뤄요. 부정어가 앞에 나와서 had the manager arrived로 도치된 것도 함께 알아 두세요."},
+    {n:104,q:"The contract stipulates that the supplier ------- all defective parts at no additional cost.",o:["replace","replaces","replaced","replacing"],a:0,ex:"stipulate, require, insist, recommend처럼 요구·주장을 나타내는 동사 뒤의 that절에는 주어와 상관없이 동사원형을 써요. 주어가 3인칭 단수(the supplier)라 replaces를 고르게 하는 함정이에요."},
+    {n:105,q:"The finance team worked overtime to ensure that the report was submitted ------- the deadline.",o:["ahead of","along with","in case of","on behalf of"],a:0,ex:"야근해서 보고서를 마감 '전에' 냈다는 흐름이라 ahead of가 맞아요."},
+    {n:106,q:"Only after the inspection was complete ------- the building to reopen.",o:["the city allowed","did the city allow","the city did allow","allowing the city"],a:1,ex:"Only after ~가 문장 맨 앞에 오면 주절이 의문문 어순으로 도치돼요. 그래서 did + 주어 + 동사원형인 did the city allow가 맞아요."},
+    {n:107,q:"The survey results were ------- with the company's earlier findings, confirming that demand had grown.",o:["consistent","dependent","responsible","capable"],a:0,ex:"빈칸 뒤 전치사 with와 어울리는 형용사는 consistent(~와 일치하는)뿐이에요. dependent on, responsible for, capable of처럼 짝이 되는 전치사가 달라요."},
+    {n:108,q:"The warranty does not ------- damage caused by improper use.",o:["cover","apply","qualify","depend"],a:0,ex:"빈칸 뒤에 목적어(damage)가 있으니 타동사가 필요해요. 보증이 손상을 '보장하다'는 뜻의 cover가 맞아요. apply, qualify, depend는 각각 to, for, on이 있어야 목적어를 받아요."},
+    {n:109,q:"Because the shipment arrived damaged, the client is ------- to a full refund.",o:["entitled","eligible","qualified","allowed"],a:0,ex:"뒤에 to + 명사(a full refund)가 오니 be entitled to(~을 받을 권리가 있다)예요. eligible과 qualified는 for와 써야 하고, be allowed to 뒤에는 동사원형이 와요."},
+    {n:110,q:"The marketing budget, ------- was cut by 20 percent last year, will be restored in the next fiscal year.",o:["which","that","what","it"],a:0,ex:"콤마 뒤에서 앞 명사를 설명하는 관계대명사 자리예요. that은 콤마 뒤에 쓸 수 없고, what은 선행사가 있을 때 쓸 수 없어요. it을 쓰면 접속사 없이 동사가 두 개가 돼요."}
+  ]
+},
+{
+  id:"r3p6", round:3, part:"Part 6", name:"장문 빈칸 채우기 · 고객 안내문", target:150,
+  desc:"4문항 · 목표 2분 30초",
+  passage:`<p class="hd">Questions 131–134 refer to the following letter.</p>
+<p>Dear Valued Subscriber,</p>
+<p>For the past six years, Northline Internet has kept its monthly rates unchanged. <span class="blank">131</span> rising equipment and maintenance costs, however, we must now adjust our prices. Beginning July 1, the monthly fee for the Standard plan will increase from $45 to $49.</p>
+<p><span class="blank">132</span> As part of this change, all Standard subscribers will receive a free speed upgrade from 100 to 300 Mbps at no additional <span class="blank">133</span>.</p>
+<p>Subscribers who would prefer a lower monthly fee may switch to our Basic plan, which costs $39. <span class="blank">134</span>, the Basic plan does not include the speed upgrade.</p>
+<p>Sincerely,<br>Northline Internet Customer Care</p>`,
+  qs:[
+    {n:131,q:"",o:["Because of","Although","Instead of","Unless"],a:0,ex:"빈칸 뒤가 명사구(rising ... costs)라 전치사가 필요해요. 의미상 비용 상승 '때문에' 가격을 올린다는 Because of가 맞아요. Although와 Unless는 접속사라 뒤에 절이 와야 해요."},
+    {n:132,q:"",o:["We understand that any price increase is unwelcome, so we have worked to add value to your plan.","Our customer service center will be closed on July 1.","The Standard plan was first introduced last year.","Thank you for choosing our new Premium plan."],a:0,ex:"바로 뒤 문장이 무료 속도 업그레이드, 곧 '추가 혜택' 이야기예요. 가격 인상이 반갑지 않을 테니 혜택을 더했다는 (A)가 자연스럽게 이어져요. (C)는 6년 동안 요금을 유지했다는 첫 문장과 모순돼요."},
+    {n:133,q:"",o:["charge","fare","value","rate"],a:0,ex:"at no additional charge(추가 요금 없이)는 고정 표현이에요. fare는 교통 요금이라 맞지 않아요."},
+    {n:134,q:"",o:["However","As a result","For instance","Likewise"],a:0,ex:"앞 문장은 Basic 요금제가 더 싸다는 장점, 뒤 문장은 업그레이드가 없다는 단점이에요. 장점과 단점이 대조되니 However가 맞아요."}
+  ]
+},
+{
+  id:"r3p7a", round:3, part:"Part 7", name:"단일 지문 · 기사 · 고난도", target:330,
+  desc:"5문항 · 목표 5분 30초",
+  passage:`<p class="hd">Questions 147–151 refer to the following article.</p>
+<p>TORONTO (October 3) — Marlow Foods, the maker of the popular Harvest Crunch line of granola bars, announced yesterday that it has acquired Pine Ridge Bakery, a family-owned company based in Guelph. The financial terms of the deal were not disclosed.</p>
+<p>Pine Ridge, founded in 1987 by brothers Daniel and Tom Reyes, is best known for its whole-grain breads, which are sold in more than 400 grocery stores across Ontario. <span class="mark">—[1]—</span> Under the agreement, the bakery will continue to operate under its own name, and Daniel Reyes will remain in charge of daily operations.</p>
+<p>Marlow CEO Andrea Kowalski said the acquisition would allow the company to enter the fresh bread market, an area in which it currently has no products. "Pine Ridge has built a loyal customer base by never compromising on quality," she said. "We intend to preserve that." <span class="mark">—[2]—</span></p>
+<p>Industry analysts have generally welcomed the move. However, some have questioned whether Pine Ridge's small production facility can keep up with the demand that Marlow's national distribution network is likely to create. <span class="mark">—[3]—</span> Ms. Kowalski responded that Marlow plans to expand the Guelph facility next year. <span class="mark">—[4]—</span></p>`,
+  qs:[
+    {n:147,q:"What is indicated about Marlow Foods?",o:["It does not currently sell fresh bread.","It was founded in Guelph.","It plans to rename Pine Ridge Bakery.","It disclosed how much it paid for the bakery."],a:0,ex:"an area in which it currently has no products가 근거예요. Guelph는 Pine Ridge의 소재지이고(B), 이름은 그대로 쓴다고 했고(C), 거래 금액은 공개하지 않았어요(D)."},
+    {n:148,q:"What is NOT stated about Pine Ridge Bakery?",o:["It was started by two family members.","Its products are sold in Ontario.","It will keep its name.","It exports bread to other countries."],a:3,ex:"형제가 세웠고(A), 온타리오 식료품점에서 팔리고(B), 이름을 유지한다(C)는 모두 지문에 있어요. 해외 수출 이야기는 없어요."},
+    {n:149,q:"The word \"terms\" in paragraph 1, line 3, is closest in meaning to",o:["details","periods","words","relationships"],a:0,ex:"financial terms of the deal은 거래의 금전적 '조건·세부 내용'이에요. term의 다른 뜻인 '기간'(periods)이나 '용어'(words)를 고르게 하는 함정이에요."},
+    {n:150,q:"What concern have some analysts raised?",o:["Pine Ridge may lose its loyal customers.","Pine Ridge's facility may be unable to meet increased demand.","Marlow may have paid too much for the bakery.","The Reyes brothers may leave the company."],a:1,ex:"can keep up with the demand를 선택지에서 meet increased demand로 바꿔 썼어요. 충성 고객(A)은 CEO가 지키겠다고 한 내용이지 분석가들의 우려가 아니에요."},
+    {n:151,q:"In which of the positions marked [1], [2], [3], and [4] does the following sentence best belong?<br><em>\"Construction is expected to begin in the spring and to double the facility's output.\"</em>",o:["[1]","[2]","[3]","[4]"],a:3,ex:"지시어가 없어서 내용으로 찾아야 해요. Construction(공사)이 무엇을 짓는 건지 생각하면, 바로 앞에서 공장을 확장한다(expand the Guelph facility)고 한 [4]예요. [3]에 넣으면 확장 계획이 나오기도 전에 공사 이야기가 나와요."}
+  ]
+},
+{
+  id:"r3p7c", round:3, part:"Part 7", name:"삼중 지문 · 공지 + 이메일 2개", target:390,
+  desc:"5문항 · 목표 6분 30초 · 최고난도",
+  passage:`<p class="hd">Questions 186–190 refer to the following notice and e-mails.</p>
+<p class="doclabel">NOTICE</p>
+<p><span class="ttl">Lindqvist Corporation: November Professional Development Workshops</span></p>
+<p>Effective Presentations: Nov. 4, Room 210, Carla Diaz<br>
+Budget Planning Basics: Nov. 11, Room 305, Owen Grant<br>
+Negotiation Skills: Nov. 18, Room 210, Carla Diaz<br>
+Project Management Tools: Nov. 25, Room 118, Mei Tanaka</p>
+<p>All workshops run from 1:00 to 4:00 P.M. Employees must obtain their supervisor's approval before registering. Each workshop is limited to 20 participants.</p>
+<p class="doclabel" style="margin-top:1.4em">E-MAIL 1</p>
+<p><span class="ttl">From:</span> Jonas Weber<br><span class="ttl">To:</span> training@lindqvist.com<br><span class="ttl">Date:</span> November 6<br><span class="ttl">Subject:</span> Workshop registration</p>
+<p>I would like to register for the workshop on budget planning. My supervisor, Ms. Okafor, has already approved my request. I had also hoped to attend the workshop on presentations, but unfortunately I was traveling for work that week. Will it be offered again?</p>
+<p class="doclabel" style="margin-top:1.4em">E-MAIL 2</p>
+<p><span class="ttl">From:</span> Training Department<br><span class="ttl">To:</span> Jonas Weber<br><span class="ttl">Date:</span> November 7</p>
+<p>Dear Mr. Weber,</p>
+<p>Unfortunately, the workshop you asked to join is already full. However, we have placed you on the waiting list and will contact you if a spot becomes available. As for your other question, Ms. Diaz will lead the same workshop again in January. In the meantime, you might consider the other workshop she is teaching this month, which still has openings.</p>`,
+  qs:[
+    {n:186,q:"Why did Mr. Weber miss a workshop?",o:["He was on a business trip.","He did not receive approval.","The workshop was full.","He was not feeling well."],a:0,ex:"I was traveling for work that week를 business trip으로 바꿔 썼어요. 상사 승인은 이미 받았고(B), 꽉 찬 건 다른 워크숍이에요(C)."},
+    {n:187,q:"For which workshop has Mr. Weber been placed on a waiting list?",o:["Effective Presentations","Budget Planning Basics","Negotiation Skills","Project Management Tools"],a:1,ex:"두 번째 이메일의 the workshop you asked to join은 첫 번째 이메일에서 등록을 요청한 budget planning 워크숍이에요. 워크숍 이름이 두 번째 이메일에 직접 나오지 않아서 앞 이메일과 연결해야 해요."},
+    {n:188,q:"On what date is the workshop that the Training Department recommends?",o:["November 4","November 11","November 18","November 25"],a:2,ex:"세 지문을 모두 써야 해요. ① 두 번째 이메일: Ms. Diaz가 이번 달에 가르치는 '다른' 워크숍을 추천해요. ② 공지: Ms. Diaz는 11월 4일(Presentations)과 18일(Negotiation)을 맡아요. ③ 첫 번째 이메일: 4일 워크숍은 이미 놓쳤어요. 그래서 남은 건 18일이에요."},
+    {n:189,q:"What is suggested about the budget planning workshop?",o:["It currently has 20 participants.","It is taught by Ms. Diaz.","It will be offered again in January.","It does not require supervisor approval."],a:0,ex:"공지에서 워크숍마다 정원이 20명이라고 했고, 두 번째 이메일에서 이 워크숍이 꽉 찼다고 했어요. 그러니 현재 20명이 등록돼 있다고 추론할 수 있어요. 강사는 Owen Grant이고(B), 1월에 다시 열리는 건 Presentations 워크숍이에요(C)."},
+    {n:190,q:"In the second e-mail, the word \"spot\" in paragraph 1, line 2, is closest in meaning to",o:["opening","stain","moment","view"],a:0,ex:"자리가 나면 연락하겠다는 뜻이라 '빈자리'인 opening이 맞아요. spot의 다른 뜻인 '얼룩'(stain)을 고르게 하는 함정이에요. opening은 같은 이메일 마지막 문장에도 같은 뜻으로 나와요."}
+  ]
 }
+
 ];
 
 const L = ["A","B","C","D"];
@@ -259,11 +334,12 @@ function home(){
         </button>`;}).join("")}
       <button class="primary" onclick="start([${idx.join(",")}])">${r}회 전체 이어서 풀기 · ${total}문항</button>`;
     }).join("")}
-    <p class="note">문제는 모두 연습용으로 새로 만든 것이며 실제 기출문제가 아니에요. 목표 시간은 리딩 75분에 100문항을 푸는 속도를 기준으로 잡았어요.</p>`;
+    <p class="note">3회는 실제 시험의 고난도 문항 수준으로 만들었어요. 문제는 모두 연습용으로 새로 만든 것이며 실제 기출문제가 아니에요. 목표 시간은 리딩 75분에 100문항을 푸는 속도를 기준으로 잡았어요.</p>`;
 }
 
 function start(queue){
   S={queue, pos:0, results:[]};
+  ftSetup(SETS[queue[0]].round||1);
   openSet();
 }
 
@@ -354,22 +430,27 @@ function summary(){
     <button class="primary" onclick="home()">목록으로</button>`;
 }
 
-// ---- 전체 타이머: 사이트 전체 문항 기준 카운트다운 ----
-const PACE = [];
-let acc = 0;
-SETS.filter(s=>(s.round||1)===1).forEach(s=>{ acc += s.target; PACE.push({label:`${s.part} · ${s.qs[0].n}–${s.qs[s.qs.length-1].n}번`, at:acc}); });
-const FT_TOTAL = acc;
-const FT_COUNT = SETS.filter(s=>(s.round||1)===1).reduce((n,s)=>n+s.qs.length,0);
-let FT = {used:0, since:null};
+// ---- 회차 타이머: 마지막으로 시작한 회차 기준 카운트다운 ----
+let PACE=[], FT_TOTAL=0, FT_COUNT=0;
+let FT = {used:0, since:null, round:1};
 try{ const s=JSON.parse(localStorage.getItem("toeic-ft")||"null"); if(s) FT=s; }catch(e){}
 function ftSave(){ try{ localStorage.setItem("toeic-ft", JSON.stringify(FT)); }catch(e){} }
+function ftSetup(r){
+  const sets=SETS.filter(s=>(s.round||1)===r);
+  PACE=[]; let acc=0;
+  sets.forEach(s=>{ acc+=s.target; PACE.push({label:`${s.part} · ${s.qs[0].n}–${s.qs[s.qs.length-1].n}번`, at:acc}); });
+  FT_TOTAL=acc; FT_COUNT=sets.reduce((n,s)=>n+s.qs.length,0);
+  if(FT.round!==r || FT.total!==FT_TOTAL){ FT={used:0,since:null,round:r,total:FT_TOTAL}; ftSave(); }
+  document.getElementById("ftTitle").textContent = `${r}회 ${FT_COUNT}문항 타이머 (${fmt(FT_TOTAL)})`;
+  ftDraw();
+}
 function ftUsed(){ return Math.min(FT_TOTAL, FT.used + (FT.since? Math.floor((Date.now()-FT.since)/1000) : 0)); }
 function ftToggle(){
   if(FT.since){ FT.used=ftUsed(); FT.since=null; }
   else if(ftUsed()<FT_TOTAL){ FT.since=Date.now(); }
   ftSave(); ftDraw();
 }
-function ftReset(){ FT={used:0,since:null}; ftSave(); ftDraw(); }
+function ftReset(){ FT={used:0,since:null,round:FT.round,total:FT_TOTAL}; ftSave(); ftDraw(); }
 function ftPanel(){ document.getElementById("ftPanel").classList.toggle("hidden"); }
 function ftDraw(){
   const used=ftUsed(), left=FT_TOTAL-used;
@@ -385,8 +466,7 @@ function ftDraw(){
   document.getElementById("ftPace").innerHTML = PACE.map((p,i)=>
     `<li class="${i<now||now<0?"past":(i===now?"now":"")}"><span>${p.label}</span><span>${fmt(FT_TOTAL-p.at)} 남았을 때</span></li>`).join("");
 }
-document.getElementById("ftTitle").textContent = `회차당 ${FT_COUNT}문항 타이머 (${fmt(FT_TOTAL)})`;
-try{ const v=localStorage.getItem("toeic-ft-total"); if(v!==String(FT_TOTAL)){ FT={used:0,since:null}; localStorage.setItem("toeic-ft-total",String(FT_TOTAL)); ftSave(); } }catch(e){}
+ftSetup(FT.round||1);
 setInterval(ftDraw, 500);
 ftDraw();
 
